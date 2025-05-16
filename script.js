@@ -9,6 +9,23 @@ grid.style.height = gridSize + "px";
 grid.style.width = gridSize + "px";
 grid.style.border = "solid";
 
+button = document.querySelector("button");
+button.addEventListener("click", (e) => {
+    size = prompt("Enter desired grid size (<=100): ");
+    if (size > 100) {
+        alert("Size too large. Please enter a number <=100");
+        return;
+    }
+
+    pixels = document.querySelectorAll(".pixel");
+
+    pixels.forEach(pixel => {
+        pixel.remove()
+    });
+
+    createPixels(size);
+});
+
 
 function createPixels(numPixels) {
     for (let index = 0; index < numPixels; index++) {
@@ -18,6 +35,7 @@ function createPixels(numPixels) {
             pixel.style.height = gridSize/numPixels + "px";
             pixel.style.width = gridSize/numPixels + "px";
             pixel.style.background = "white";
+            pixel.classList.add("pixel")
 
             pixel.addEventListener("mouseover", (e) => {
                 pixel.style.background = "black";
